@@ -1,0 +1,412 @@
+/* Shared styles for all components */
+.section {
+  padding: 4rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Services styles */
+.services {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.services ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.services li {
+  padding: 1.5rem;
+  background: #f8f8f8;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: transform 0.2s;
+}
+
+.services li:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* Team styles */
+.profile {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+/* Team Section */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  padding: 2rem 0;
+}
+
+.team-member {
+  text-align: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid var(--accent-color);
+}
+
+/* Contact form styles */
+.contact {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.contact form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.contact input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.contact button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Salary widget styles */
+.salary-widget {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8f8f8;
+  border-radius: 8px;
+}
+
+/* Photos grid styles */
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.photos-grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+/* Opening times styles */
+.opening-times ul {
+  list-style: none;
+  padding: 0;
+}
+
+.opening-times li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Home Hero Section */
+.home-hero {
+  background: linear-gradient(120deg, #23272f 60%, #bfa76a 100%);
+  color: #fff;
+  padding: 3rem 1rem 2rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.hero-content {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  opacity: 0.9;
+}
+.hero-btn {
+  background: #bfa76a;
+  color: #23272f;
+  padding: 0.9em 2.2em;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.hero-btn:hover {
+  background: #fff;
+  color: #bfa76a;
+}
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.home-card {
+  background: #fff;
+  color: #23272f;
+  border-radius: 10px;
+  padding: 2rem 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.home-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(191,167,106,0.13);
+}
+.home-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.card-link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  color: #bfa76a;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid #bfa76a;
+  transition: color 0.2s, border 0.2s;
+}
+.card-link:hover {
+  color: #23272f;
+  border-bottom: 1.5px solid #23272f;
+}
+.welcome-message-home {
+  margin: 2rem auto 2rem auto;
+  max-width: 600px;
+  background: #fff;
+  color: #23272f;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  text-align: center;
+}
+
+.dark-mode .welcome-message-home {
+  background: #23272f;
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(191,167,106,0.13);
+}
+
+.hero-marketing {
+  font-size: 1.15rem;
+  margin: 1.2rem auto 2rem auto;
+  max-width: 650px;
+  color: #fff;
+  opacity: 0.95;
+  line-height: 1.7;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  font-family: 'Inter', sans-serif;
+}
+.main-logo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #bfa76a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 700px) {
+  .home-hero {
+    padding: 1.5rem 0.3rem;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .home-cards {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .main-logo-title {
+    font-size: 1.5rem;
+  }
+  .hero-marketing {
+    font-size: 1rem;
+  }
+}
+
+/* --- DARK MODE FIXES FOR ALL CARDS AND TEXT --- */
+.dark-mode .section,
+.dark-mode .services,
+.dark-mode .products,
+.dark-mode .team-grid,
+.dark-mode .team-member,
+.dark-mode .home-card,
+.dark-mode .contact,
+.dark-mode .salary-widget,
+.dark-mode .about,
+.dark-mode .opening-times,
+.dark-mode .photos-grid {
+  background: #23272f !important;
+  color: #fff !important;
+  box-shadow: 0 2px 12px rgba(191,167,106,0.10);
+}
+
+.dark-mode .services li,
+.dark-mode .products li,
+.dark-mode .home-card,
+.dark-mode .team-member,
+.dark-mode .salary-widget,
+.dark-mode .photos-grid img {
+  background: #2d313a !important;
+  color: #fff !important;
+  border-color: #bfa76a !important;
+}
+
+.dark-mode .card-link,
+.dark-mode .home-icon,
+.dark-mode .services h3,
+.dark-mode .products strong,
+.dark-mode .team-member h3,
+.dark-mode .about h2,
+.dark-mode .contact h2,
+.dark-mode .salary-widget h3,
+.dark-mode .opening-times h2 {
+  color: #bfa76a !important;
+}
+
+.dark-mode .services p,
+.dark-mode .products p,
+.dark-mode .team-member p,
+.dark-mode .contact p,
+.dark-mode .salary-widget p,
+.dark-mode .about p,
+.dark-mode .opening-times li,
+.dark-mode .products button,
+.dark-mode .services button {
+  color: #fff !important;
+}
+
+.dark-mode .products button,
+.dark-mode .services button,
+.dark-mode .contact button {
+  background: #bfa76a !important;
+  color: #23272f !important;
+  border: none;
+}
+
+.dark-mode .products button:hover,
+.dark-mode .services button:hover,
+.dark-mode .contact button:hover {
+  background: #fff !important;
+  color: #bfa76a !important;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background: #23272f !important;
+  color: #fff !important;
+  border: 1.5px solid #bfa76a !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #bfa76a !important;
+  opacity: 0.7;
+}
+
+.dark-mode .photos-grid img {
+  border: 3px solid #bfa76a !important;
+  box-shadow: 0 2px 12px rgba(191,167,106,0.13);
+}
+
+/* --- DARK MODE: Make all text and cards readable --- */
+.dark-mode .home-card,
+.dark-mode .services li,
+.dark-mode .products li,
+.dark-mode .team-member,
+.dark-mode .about,
+.dark-mode .contact,
+.dark-mode .salary-widget,
+.dark-mode .opening-times,
+.dark-mode .photos-grid {
+  background: #23272f !important;
+  color: #fff !important;
+  box-shadow: 0 2px 12px rgba(191,167,106,0.10);
+}
+
+.dark-mode .home-card h3,
+.dark-mode .home-card .home-icon,
+.dark-mode .card-link,
+.dark-mode .services h3,
+.dark-mode .products strong,
+.dark-mode .team-member h3 {
+  color: #bfa76a !important;
+}
+
+.dark-mode .home-card p,
+.dark-mode .services p,
+.dark-mode .products p,
+.dark-mode .team-member p,
+.dark-mode .about p,
+.dark-mode .contact p,
+.dark-mode .salary-widget p,
+.dark-mode .opening-times li {
+  color: #fff !important;
+}
+
+.dark-mode .card-link:hover {
+  color: #fff !important;
+  border-bottom: 1.5px solid #bfa76a !important;
+}

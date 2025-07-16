@@ -1,0 +1,169 @@
+/* Styling for the Header component */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #23272f;
+  color: #fff;
+  padding: 1.2em 2em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #bfa76a;
+  font-family: 'Playfair Display', serif;
+}
+
+.logo .tagline {
+  margin: 0;
+  font-size: 1em;
+  color: #fff;
+  opacity: 0.7;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* Navigation styles */
+nav {
+  position: relative;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.2em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #bfa76a;
+}
+
+/* Mobile menu open style */
+.nav-open {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #333;
+  padding: 10px 0;
+}
+
+/* Language switcher buttons */
+.lang-switcher button {
+  background: #23272f;
+  border: 2px solid #bfa76a;
+  border-radius: 50%;
+  font-size: 1.2em;
+  margin: 0 0.15em;
+  cursor: pointer;
+  color: #bfa76a;
+  width: 2.2em;
+  height: 2.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.lang-switcher button.active-lang,
+.lang-switcher button:focus {
+  background: #bfa76a;
+  color: #23272f;
+  border-color: #fff;
+  outline: none;
+}
+.lang-switcher button:hover {
+  background: #fff;
+  color: #bfa76a;
+}
+.mode-toggle {
+  background: #23272f;
+  border: 2px solid #bfa76a;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #bfa76a;
+  width: 2.2em;
+  height: 2.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5em;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.mode-toggle:hover {
+  background: #bfa76a;
+  color: #23272f;
+  border-color: #fff;
+}
+.login-btn {
+  background: #bfa76a;
+  color: #23272f;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.2em;
+  font-size: 1em;
+  margin-left: 0.5em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.login-btn:hover {
+  background: #fff;
+  color: #bfa76a;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+/* Show the menu toggle on smaller screens */
+@media (max-width: 900px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: #23272f;
+    position: absolute;
+    top: 3.5em;
+    right: 0;
+    width: 220px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.13);
+    padding: 1em 0;
+  }
+  nav ul.nav-open {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}

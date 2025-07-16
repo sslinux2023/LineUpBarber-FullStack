@@ -1,0 +1,33 @@
+{
+  "header": {
+    "logo": "LineUp Barber",
+    "tagline": "Where your look is our craft",
+    "login": "Login",
+    "toggleMode": "Toggle dark mode"
+  },
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "products": "Products",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "home": {
+    "heroTitle": "Step Up Your Style at LineUp Barber",
+    "heroSubtitle": "Classic & Modern Cuts. Your style, our craft.",
+    "heroMarketing": "Discover the art of grooming with our expert barbers. From classic cuts to modern fades, we deliver sharp looks and premium care. Book your transformation today—where confidence begins.",
+    "bookBtn": "Book a Service",
+    "servicesCardTitle": "Expert Services",
+    "servicesCardDesc": "Precision haircuts, beard trims, fades, and shaves—tailored to your style.",
+    "servicesCardLink": "See Services",
+    "productsCardTitle": "Shop Products",
+    "productsCardDesc": "Professional hair products and grooming tools for the modern man.",
+    "productsCardLink": "Shop Now",
+    "teamCardTitle": "Meet Our Team",
+    "teamCardDesc": "Get to know our passionate, skilled barbers and stylists.",
+    "teamCardLink": "Meet the Team",
+    "contactCardTitle": "Visit Us",
+    "contactCardDesc": "See our hours, location, and contact info. We’re here for you!",
+    "contactCardLink": "Contact & Hours"
+  }
+}
