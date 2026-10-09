@@ -1,10 +1,18 @@
-// filepath: c:\Users\saoudi\Desktop\LineUpBarber\backend\src\appointments\dto\create-appointment.dto.ts
-import { IsNotEmpty, IsDateString } from 'class-validator';
+import { IsNotEmpty, IsDateString, IsOptional, IsString, IsInt } from 'class-validator';
 
 export class CreateAppointmentDto {
   @IsNotEmpty()
+  @IsString()
   name: string;
 
   @IsDateString()
   date: string;
+
+  @IsOptional()
+  @IsInt()
+  serviceId?: number;
+
+  @IsOptional()
+  @IsString()
+  serviceName?: string;
 }

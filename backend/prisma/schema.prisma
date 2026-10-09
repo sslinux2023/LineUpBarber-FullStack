@@ -12,34 +12,45 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      String   @default("client") // "admin" or "client"
+  role      String   @default("client")
   createdAt DateTime @default(now())
+  orders    Order[]
 }
 
 model Appointment {
-  id        Int      @id @default(autoincrement())
-  name      String
-  date      DateTime
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  name        String
+  date        DateTime
+  serviceId   Int?
+  service     Service? @relation(fields: [serviceId], references: [id])
+  serviceName String?
+  createdAt   DateTime @default(now())
 }
 
 model Service {
-  id    Int    @id @default(autoincrement())
-  name  String
-  price Int
-  description String?
-  imageUrl  String?
+  id            Int           @id @default(autoincrement())
+  name          String
+  nameAr        String?
+  price         Int
+  description   String?
+  descriptionAr String?
+  imageUrl      String?
+
+  // NEW — back-relation to appointments
+  appointments  Appointment[]
 }
 
 model Product {
   id          Int      @id @default(autoincrement())
   name        String
+  nameAr        String?   // NEW
   description String
+  descriptionAr String?   // NEW
   price       Int
   imageUrl    String?
   createdAt   DateTime @default(now())
+  orderItems  OrderItem[]
 }
-
 model Book {
   id          Int      @id @default(autoincrement())
   title       String
@@ -48,4 +59,30 @@ model Book {
   description String
   imageUrl    String?
   createdAt   DateTime @default(now())
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+
+  // NEW — snapshot of who ordered (so it's readable in lists even without a join)
+  customerName  String?
+  customerEmail String?
+  customerPhone String?
+
+  total     Float
+  status    String   @default("pending")
+  items     OrderItem[]
+  createdAt DateTime @default(now())
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  order     Order    @relation(fields: [orderId], references: [id])
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+  price     Int      // price at time of purchase, in case product price changes later
 }

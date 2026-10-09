@@ -1,134 +1,127 @@
-/* Styling for the Header component */
+/* ══════════════════════════════════════════════════════
+   Header
+   ══════════════════════════════════════════════════════ */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   background: #23272f;
   color: #fff;
-  padding: 1.2em 2em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 0.9rem 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 900;
 }
 
 .logo {
-  text-align: center;
-  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1.15;
 }
-
 .logo h1 {
   margin: 0;
-  font-size: 2em;
-  letter-spacing: 2px;
+  font-size: 1.55rem;
+  letter-spacing: 1.5px;
   color: #bfa76a;
   font-family: 'Playfair Display', serif;
+  font-weight: 700;
 }
-
 .logo .tagline {
   margin: 0;
-  font-size: 1em;
-  color: #fff;
-  opacity: 0.7;
+  font-size: 0.78rem;
+  color: #c8c8c8;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
 }
 
-/* Navigation styles */
-nav {
-  position: relative;
-}
+nav { position: relative; }
 
 nav ul {
   display: flex;
-  gap: 1.2em;
+  gap: 1rem;
   list-style: none;
   margin: 0;
   padding: 0;
   align-items: center;
 }
 
-nav ul li {
-  display: flex;
-  align-items: center;
-}
+nav ul li { display: flex; align-items: center; }
 
 nav a {
-  color: #fff;
+  color: #e7e7e7;
   font-weight: 500;
-  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 6px 4px;
   transition: color 0.2s;
 }
+nav a:hover { color: #bfa76a; }
 
-nav a:hover {
-  color: #bfa76a;
-}
+/* ── Language switcher ─────────────────── */
+.lang-switcher { display: flex; gap: 4px; }
 
-/* Mobile menu open style */
-.nav-open {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #333;
-  padding: 10px 0;
-}
-
-/* Language switcher buttons */
 .lang-switcher button {
-  background: #23272f;
-  border: 2px solid #bfa76a;
-  border-radius: 50%;
-  font-size: 1.2em;
-  margin: 0 0.15em;
+  background: transparent;
+  border: 1.5px solid #bfa76a;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   cursor: pointer;
   color: #bfa76a;
-  width: 2.2em;
-  height: 2.2em;
+  min-width: 38px;
+  height: 30px;
+  padding: 0 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 .lang-switcher button.active-lang,
 .lang-switcher button:focus {
   background: #bfa76a;
   color: #23272f;
-  border-color: #fff;
+  border-color: #bfa76a;
   outline: none;
 }
 .lang-switcher button:hover {
   background: #fff;
   color: #bfa76a;
+  border-color: #fff;
 }
+
+/* ── Mode toggle ───────────────────────── */
 .mode-toggle {
-  background: #23272f;
-  border: 2px solid #bfa76a;
+  background: transparent;
+  border: 1.5px solid #bfa76a;
   border-radius: 50%;
-  font-size: 1.2em;
+  font-size: 1rem;
   cursor: pointer;
   color: #bfa76a;
-  width: 2.2em;
-  height: 2.2em;
+  width: 34px;
+  height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.5em;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 .mode-toggle:hover {
   background: #bfa76a;
   color: #23272f;
-  border-color: #fff;
 }
+
+/* ── Login button ──────────────────────── */
 .login-btn {
   background: #bfa76a;
   color: #23272f;
   border: none;
-  border-radius: 6px;
-  padding: 0.5em 1.2em;
-  font-size: 1em;
-  margin-left: 0.5em;
+  border-radius: 8px;
+  padding: 0.45em 1em;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
@@ -137,33 +130,39 @@ nav a:hover {
   color: #bfa76a;
 }
 
+/* ── Mobile ────────────────────────────── */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   color: #fff;
-  font-size: 2em;
+  font-size: 1.6rem;
   cursor: pointer;
+  padding: 4px 8px;
 }
 
-/* Show the menu toggle on smaller screens */
 @media (max-width: 900px) {
+  .header { padding: 0.7rem 1rem; }
+  .logo h1 { font-size: 1.2rem; }
+  .logo .tagline { font-size: 0.7rem; }
+
   nav ul {
     display: none;
     flex-direction: column;
+    align-items: flex-start;
     background: #23272f;
     position: absolute;
-    top: 3.5em;
+    top: calc(100% + 10px);
     right: 0;
-    width: 220px;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.13);
-    padding: 1em 0;
+    min-width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    padding: 1rem 1.25rem;
+    gap: 0.75rem;
   }
-  nav ul.nav-open {
-    display: flex;
-  }
-  .menu-toggle {
-    display: block;
-  }
+  nav ul.nav-open { display: flex; }
+  .menu-toggle { display: block; }
+
+  nav ul li { width: 100%; }
+  .lang-switcher { margin-top: 0.5rem; }
 }

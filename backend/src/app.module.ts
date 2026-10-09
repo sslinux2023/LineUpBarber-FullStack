@@ -4,19 +4,21 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { ServicesModule } from './services/services.module';
-import { ProductsModule } from './products/products.module'; // <-- import the new module
+import { ProductsModule } from './products/products.module'; 
+import { OrdersModule } from './orders/orders.module';   // <-- ADD THIS// <-- import the new module
 import { MailerService } from './mailer/mailer.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     UserModule,
+    AuthModule,
     AppointmentsModule,
     ServicesModule,
-    ProductsModule, // <-- add this line
+    ProductsModule,
+    OrdersModule,
   ],
   controllers: [AppController],
-  providers: [AppService, MailerService], // add MailerService here
+  providers: [AppService, MailerService],
 })
 export class AppModule {}
-
-// c:\Users\saoudi\Desktop\LineUpBarber\backend\src\app.module.ts

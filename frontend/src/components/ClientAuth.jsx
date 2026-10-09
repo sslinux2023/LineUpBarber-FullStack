@@ -1,63 +1,140 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const ClientAuth = ({ onLogin }) => {
+const ClientAuth = ({ onLogin, onClose }) => {
+  const { t } = useTranslation();
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
+
     try {
-      const url = isRegister
-        ? 'http://localhost:3000/user/register'
-        : 'http://localhost:3000/user/login';
-      const body = isRegister
-        ? { name, email, password }
-        : { email, password };
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      if (!response.ok) {
-        // Try to get the real error message from backend
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.message || 'Login/Register failed');
+      if (isRegister) {
+        // 1. Register
+        const regRes = await fetch('http://localhost:3000/user/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password }),
+        });
+        if (!regRes.ok) {
+          const errData = await regRes.json().catch(() => ({}));
+          throw new Error(errData.message || 'Registration failed');
+        }
+
+        // 2. Immediately log in with the same credentials
+        const loginRes = await fetch('http://localhost:3000/user/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+        if (!loginRes.ok) {
+          const errData = await loginRes.json().catch(() => ({}));
+          throw new Error(errData.message || 'Login after register failed');
+        }
+        const data = await loginRes.json();
+        onLogin(data);
+        window.dispatchEvent(
+          new CustomEvent('toast', {
+            detail: { type: 'success', text: `✓ ${t('auth.successMsg')}` },
+          })
+        );
+      } else {
+        // Login
+        const res = await fetch('http://localhost:3000/user/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.message || t('auth.errorMsg'));
+        }
+        const data = await res.json();
+        onLogin(data);
+        window.dispatchEvent(
+          new CustomEvent('toast', {
+            detail: { type: 'success', text: `✓ ${t('auth.successMsg')}` },
+          })
+        );
       }
-      const data = await response.json();
-      onLogin(data); // Save user info in parent
     } catch (err) {
-      setError(err.message || 'Invalid credentials or registration failed');
+      setError(err.message || t('auth.errorMsg'));
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="client-auth section">
-      <h2>{isRegister ? 'Register' : 'Client Login'}</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        {isRegister && (
-          <div>
-            <label>Name:</label>
-            <input value={name} onChange={e => setName(e.target.value)} required />
+    <div className="auth-overlay" onClick={onClose}>
+      <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="auth-close" onClick={onClose} aria-label="Close">✕</button>
+
+        <h2>{isRegister ? t('auth.registerTitle') : t('auth.loginTitle')}</h2>
+
+        {error && <div className="auth-error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          {isRegister && (
+            <div className="field">
+              <label>{t('auth.name')}</label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                autoComplete="name"
+              />
+            </div>
+          )}
+
+          <div className="field">
+            <label>{t('auth.email')}</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
           </div>
-        )}
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">{isRegister ? 'Register' : 'Login'}</button>
-      </form>
-      <button onClick={() => setIsRegister(!isRegister)} style={{ marginTop: '1em' }}>
-        {isRegister ? 'Already have an account? Login' : 'No account? Register'}
-      </button>
+
+          <div className="field">
+            <label>{t('auth.password')}</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete={isRegister ? 'new-password' : 'current-password'}
+            />
+          </div>
+
+          <button type="submit" className="auth-submit" disabled={loading}>
+            {loading
+              ? t('auth.loading')
+              : isRegister
+              ? t('auth.register')
+              : t('auth.submit')}
+          </button>
+        </form>
+
+        <button
+          type="button"
+          className="auth-switch"
+          onClick={() => {
+            setIsRegister(!isRegister);
+            setError('');
+          }}
+        >
+          {isRegister ? t('auth.haveAccount') : t('auth.noAccount')}
+        </button>
+      </div>
     </div>
   );
 };

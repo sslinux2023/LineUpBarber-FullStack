@@ -14,7 +14,15 @@ export class UserService {
   }
 
   findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+    });
   }
 
   findOne(id: number) {
@@ -23,6 +31,13 @@ export class UserService {
     }
     return this.prisma.user.findUnique({
       where: { id: Number(id) },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
     });
   }
 

@@ -1,63 +1,218 @@
+/* ══════════════════════════════════════════════════════
+   App-level styles (minimal)
+   ══════════════════════════════════════════════════════ */
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Example global style for dark mode */
-.dark-mode {
-  background-color: #222;
-  color: #eee;
+.app-main {
+  flex: 1;
+  width: 100%;
 }
 
-main {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* ── User chip in header (replaces full-width welcome bar) ── */
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(191, 167, 106, 0.15);
+  border: 1px solid rgba(191, 167, 106, 0.4);
+  color: #f4e9c4;
+  padding: 4px 10px 4px 6px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 8px;
 }
 
-section {
-  margin: 2rem 0;
+.user-chip .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #bfa76a;
+  color: #23272f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.user-chip .logout-btn {
+  background: transparent;
+  border: none;
+  color: #bfa76a;
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  border-radius: 4px;
+}
+.user-chip .logout-btn:hover {
+  background: rgba(191, 167, 106, 0.25);
+  color: #fff;
+}
+
+/* ── Client login modal ──────────────────── */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
 }
 
-.dark-mode section {
-  background-color: #333;
+.auth-modal {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.25rem 2rem 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.30);
+  animation: modalIn 0.22s ease-out;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.auth-modal h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.auth-modal .field {
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.auth-modal .auth-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.9rem;
+  font-size: 1.05rem;
 }
 
-.card {
-  padding: 2em;
+.auth-modal .auth-switch {
+  background: transparent;
+  border: none;
+  color: #bfa76a;
+  font-weight: 600;
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.4rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.auth-modal .auth-switch:hover { color: #23272f; background: transparent; }
+
+.auth-modal .auth-error {
+  color: #b3261e;
+  background: #fdecec;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  text-align: center;
 }
 
-.read-the-docs {
+.auth-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
   color: #888;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.auth-close:hover { background: #f2f2f4; color: #23272f; }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.dark-mode .auth-modal { background: #23272f; color: #e7e7e7; }
+.dark-mode .auth-modal h2 { color: #f4e9c4; }
+.dark-mode .auth-modal label { color: #e7e7e7; }
+.dark-mode .auth-modal input {
+  background: #1c2027;
+  color: #fff;
+  border-color: #3a3f47;
+}
+.dark-mode .auth-close { color: #bbb; }
+.dark-mode .auth-close:hover { background: #2d313a; color: #fff; }
+.dark-mode .auth-modal .auth-error {
+  background: #3a2020;
+  color: #ffb0b0;
+}
+
+/* ── Improved user chip + logout button ────────────────── */
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(191, 167, 106, 0.12);
+  border: 1px solid rgba(191, 167, 106, 0.45);
+  color: #f4e9c4;
+  padding: 4px 6px 4px 4px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+//*logout button hover effect*/
+.user-chip .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #bfa76a;
+  color: #23272f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.user-chip .user-name {
+  padding-right: 2px;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-chip .logout-btn {
+  background: #bfa76a;
+  border: none;
+  color: #23272f;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+.user-chip .logout-btn:hover {
+  background: #fff;
+  transform: translateX(2px);
+}
+
+/* RTL — arrow points the other way */
+[dir="rtl"] .user-chip .logout-btn:hover {
+  transform: translateX(-2px);
 }

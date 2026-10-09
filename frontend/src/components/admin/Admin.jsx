@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
 
-const Admin = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+const Admin = ({ token, onLogin, onLogout }) => {
   return (
     <div>
-      {!isLoggedIn ? (
-        <AdminLogin onLogin={() => setIsLoggedIn(true)} />
+      {!token ? (
+        <AdminLogin onLogin={onLogin} />
       ) : (
-        <AdminDashboard />
+        <AdminDashboard token={token} onLogout={onLogout} />
       )}
     </div>
   );

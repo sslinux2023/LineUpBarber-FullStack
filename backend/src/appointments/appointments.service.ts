@@ -8,13 +8,25 @@ export class AppointmentsService {
   constructor(private prisma: PrismaService) {}
 
   create(createAppointmentDto: CreateAppointmentDto) {
+    const { serviceId, ...rest } = createAppointmentDto;
     return this.prisma.appointment.create({
-      data: createAppointmentDto,
+      data: {
+        ...rest,
+        ...(serviceId ? { serviceId } : {}),
+      },
+      include: {
+        service: { select: { id: true, name: true, nameAr: true, price: true } },
+      },
     });
   }
 
   findAll() {
-    return this.prisma.appointment.findMany();
+    return this.prisma.appointment.findMany({
+      include: {
+        service: { select: { id: true, name: true, nameAr: true, price: true } },
+      },
+      orderBy: { date: 'desc' },
+    });
   }
 
   findOne(id: number) {
@@ -23,6 +35,9 @@ export class AppointmentsService {
     }
     return this.prisma.appointment.findUnique({
       where: { id: Number(id) },
+      include: {
+        service: { select: { id: true, name: true, nameAr: true, price: true } },
+      },
     });
   }
 
@@ -34,8 +49,6 @@ export class AppointmentsService {
   }
 
   remove(id: number) {
-    return this.prisma.appointment.delete({
-      where: { id },
-    });
+    return this.prisma.appointment.delete({ where: { id } });
   }
 }

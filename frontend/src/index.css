@@ -1,13 +1,20 @@
 :root {
   --primary-color: #23272f;
   --secondary-color: #bfa76a;
-  --text-color: #23272f;
-  --background-color: #f7f7f9;
-  --card-bg: #fff;
   --accent-color: #bfa76a;
-  --border-radius: 10px;
-  --shadow: 0 2px 12px rgba(0,0,0,0.06);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --text-color: #23272f;
+  --text-muted: #6b7280;
+  --background-color: #f7f7f9;
+  --card-bg: #ffffff;
+  --border-radius: 12px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  min-height: 100vh;
 }
 
 body {
@@ -15,27 +22,24 @@ body {
   padding: 0;
   color: var(--text-color);
   background-color: var(--background-color);
-  font-family: var(--font-family);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-width: 320px;
-  min-height: 100vh;
-  line-height: 1.7;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
   color: var(--primary-color);
-  margin-bottom: 0.5em;
+  margin: 0 0 0.5em;
+  line-height: 1.25;
 }
 
-h1 {
-  font-size: 2.8em;
-  font-weight: 700;
-}
+h1 { font-size: 2.6em; font-weight: 700; }
+h2 { font-size: 1.9em; font-weight: 600; }
+h3 { font-size: 1.35em; font-weight: 600; }
 
-h2 {
-  font-size: 2em;
-  font-weight: 600;
-}
+p { margin: 0 0 1em; }
 
 a {
   color: var(--accent-color);
@@ -43,71 +47,92 @@ a {
   transition: color 0.2s;
   font-weight: 500;
 }
-a:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
-}
+a:hover { color: var(--primary-color); }
 
-.section, .card {
+/* ── Page shell ─────────────────────── */
+.section {
   background: var(--card-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   padding: 2.5rem 2rem;
   margin: 2rem auto;
-  max-width: 900px;
+  max-width: 1100px;
+  width: calc(100% - 2rem);
 }
 
+/* ── Buttons ────────────────────────── */
 button {
-  border-radius: var(--border-radius);
-  border: none;
-  padding: 0.8em 2em;
-  font-size: 1.1em;
-  font-weight: 600;
   font-family: inherit;
+  border-radius: 8px;
+  border: none;
+  padding: 0.7em 1.6em;
+  font-size: 1em;
+  font-weight: 600;
   background-color: var(--accent-color);
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(191,167,106,0.08);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
 }
-button:hover, button:focus {
+button:hover {
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  outline: none;
+}
+button:active { transform: translateY(1px); }
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
+/* ── Inputs ─────────────────────────── */
 input, textarea, select {
-  border-radius: var(--border-radius);
-  border: 1px solid #ddd;
+  border-radius: 8px;
+  border: 1px solid #e2e2e6;
   padding: 0.7em 1em;
   font-size: 1em;
   font-family: inherit;
-  margin-bottom: 1em;
-  background: #f9f9fa;
-  transition: border 0.2s;
+  background: #fbfbfd;
+  width: 100%;
+  transition: border 0.2s, background 0.2s;
 }
 input:focus, textarea:focus, select:focus {
   border: 1.5px solid var(--accent-color);
+  background: #fff;
   outline: none;
 }
 
+label {
+  display: block;
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 0.35em;
+}
+
+/* ── Footer ─────────────────────────── */
 footer {
   text-align: center;
   color: #888;
-  padding: 2rem 0 1rem 0;
-  font-size: 1em;
-  background: transparent;
+  padding: 2rem 0 1.5rem;
+  font-size: 0.95em;
+}
+
+/* ── Dark mode ──────────────────────── */
+.dark-mode body,
+body.dark-mode {
+  background: #1c2027;
+  color: #e7e7e7;
+}
+.dark-mode h1, .dark-mode h2, .dark-mode h3 { color: #f4e9c4; }
+.dark-mode .section { background: #23272f; color: #e7e7e7; }
+.dark-mode a { color: #d4bd82; }
+.dark-mode input, .dark-mode textarea, .dark-mode select {
+  background: #1c2027;
+  color: #fff;
+  border-color: #3a3f47;
 }
 
 @media (max-width: 700px) {
-  .section, .card {
-    padding: 1.2rem 0.7rem;
-    margin: 1rem 0.2rem;
-  }
-  h1 {
-    font-size: 2em;
-  }
-  h2 {
-    font-size: 1.3em;
-  }
+  .section { padding: 1.5rem 1rem; margin: 1rem auto; }
+  h1 { font-size: 1.9em; }
+  h2 { font-size: 1.4em; }
 }
